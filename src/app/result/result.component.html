@@ -1,0 +1,231 @@
+<section class="p-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="text-center py-3">Interview Status</h4>
+                <form  #appForm="ngForm"   class="rounded shadow p-3">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="name">Job Profile</label>
+                            <input type="text" placeholder="Job Profile" name="Job_Profile" #jobprofile ngModel class="form-control">
+                        </div>
+                        <div class="col-6">
+                            <label for="name">Name</label>
+                            <input type="text" placeholder="Enter Name" name="name" #fname ngModel class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="name">Father Name </label>
+                            <input type="text" placeholder="Father Name" name="F_name" #fatherNaem ngModel class="form-control">
+                        </div>
+                        <div class="col-6">
+                            <label for="name">DOB</label>
+                            <input type="date" placeholder="Enter Date Of Birth" name="dob" #dob ngModel class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="name">E-mail</label>
+                            <input type="text" placeholder="Enter your e-mail" name="email" #email ngModel class="form-control">
+                        </div>
+                        <div class="col-6">
+                            <label for="name">Contact</label>
+                            <input type="text" placeholder="Enter Contact" name="contact" #contact ngModel maxlength="10" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="name">Area Pin</label>
+                            <input type="text" placeholder="Enter your Area Pin" name="area_pin" #areapin ngModel maxlength="6" class="form-control">
+                        </div>
+                        <div class="col-6">
+                            <label for="name">Job Location</label>
+                            <input type="text" placeholder="Job Location" name="J_loction" #jobloct ngModel class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="name">Status</label>
+                            <select name="" id="" class="form-control" name="status" #status ngModel>
+                                <option selected>- - Select - - </option>
+                                <option value="Select">Selected</option>
+                                <option value="Under-Process">Under Process</option>
+                                <option value="Payment_Panding">Payment Panding</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button [class.bg-success]="logicBtn" class="btn btn-warning text-white mt-3 text-center"  (click)="logicBtn ? dataAdd(appForm.value) : dataupdate(appForm.value) ">{{logicBtn ? 'Add Value' : 'Update Value'}}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="p-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="p-3 bg-light border rounded w-100 ">
+                    <table class="table table-bordered fs-8 text-center">
+                        <thead >
+                            <tr>
+                                <th class="text-center">SR</th>
+                                <th>Post</th>
+                                <th>User Name</th>
+                                <th>Father Name</th>
+                                <th>DOB</th>
+                                <th>Email</th>
+                                <th>Contact</th>
+                                <th>Area Pin</th>
+                                <th>Job Location </th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of result;index as i">
+                               <td>{{i+1+"."}}</td>
+                               <td>{{data.Job_Profile}}</td>
+                               <td>{{data.name}}</td>
+                               <td>{{data.F_name}}</td>
+                               <td>{{data.dob}}</td>
+                               <td>{{data.email}}</td>
+                               <td>{{data.contact}}</td>
+                               <td>{{data.area_pin}}</td>
+                               <td>{{data.J_loction}}</td>
+                               <td>{{data.status}}</td>
+                                <td>
+                                    <!-- <a href="" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-pencil-square-o text-success p-1"></i></a> -->
+                                    <a (click)="dataFil(i)"><i class="fa fa-pencil-square-o text-success p-1"></i></a>
+                                    <a ><i class="fa fa-trash-o text-danger p-1"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  
+  <!-- Modal -->
+  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="--bs-modal-width: 850px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Interview Status</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="">
+                        <div class="form-group">
+                          <div class="row">
+                            <div class="col-6">
+                                <label for="Name">Job Profile</label>
+                                <input type="text" value="" id="name" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="Name">Experince</label>
+                                <input type="text" value="" id="name" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="Name">Name</label>
+                                <input type="text" value="" id="name" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="Name">Father Name</label>
+                                <input type="text" value="" id="name" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="Name">DOB</label>
+                                <input type="text" value="" id="name" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="Name">E_mail</label>
+                                <input type="text" value="" id="name" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="Name">Contact</label>
+                                <input type="text" value="" id="name" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="Name">Altranet Number</label>
+                                <input type="text" value="" id="name" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="Name">Enter Religion</label>
+                                <input type="text" value="" id="name" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="Name">Qualification</label>
+                                <input type="text" value="" id="name" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="Name">Board</label>
+                                <input type="text" value="" id="name" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="Name">Year</label>
+                                <input type="text" value="" id="name" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="Name">Percentage</label>
+                                <input type="text" value="" id="name" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="Name">Address</label>
+                                <input type="text" value="" id="name" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="Name">Landing </label>
+                                <input type="text" value="" id="name" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="Name">City</label>
+                                <input type="text" value="" id="name" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="Name">State</label>
+                                <input type="text" value="" id="name" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="Name">Pin Code</label>
+                                <input type="text" value="" id="name" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="Name">location</label>
+                                <input type="text" value="" id="name" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="Name">Aadhar Card</label>
+                                <input type="text" value="" id="name" class="form-control">
+                            </div>
+                            <div class="col-12">
+                                <label for="Name">Job State</label>
+                                <select name="" id="" class="form-control">
+                                    <option value="">Selected</option>
+                                    <option value="">Under Process</option>
+                                    <option value="">Payment panding</option>
+                                    <option value="">Rejected</option>
+                                </select>
+                            </div>
+                          </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger">Data Update</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
